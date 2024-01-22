@@ -5,7 +5,7 @@ SELECT
 		WHEN salary_year_change > 5
 		OR commodities_price_year_change > 5
 		OR following_year_salary_change > 5
-		AND following_year_commodities_price_change > 5 THEN 1
+		OR following_year_commodities_price_change > 5 THEN 1
 		ELSE 0
 	END AS GDP_influence
 FROM (
