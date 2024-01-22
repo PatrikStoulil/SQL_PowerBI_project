@@ -1,7 +1,8 @@
 
 
 
-
+SELECT x.name_of_commodity, avg(year_change) AS average_price_development FROM
+(
 SELECT
 	tps.payroll_year,
 	tps.name_of_commodity,
@@ -19,4 +20,6 @@ WHERE
 	tps.name_of_commodity IS NOT NULL
 	and tps.price_of_commodity IS NOT NULL
 GROUP BY tps.payroll_year, tps.name_of_commodity 
-ORDER BY tps.name_of_commodity, tps.payroll_year
+ORDER BY tps.name_of_commodity, tps.payroll_year) x
+GROUP BY x.name_of_commodity
+ORDER BY avg(year_change)
