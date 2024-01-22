@@ -1,5 +1,14 @@
 
-
+SELECT
+	*,
+	CASE
+		WHEN salary_year_change > 5
+		OR commodities_price_year_change > 5
+		OR following_year_salary_change > 5
+		AND following_year_commodities_price_change > 5 THEN 1
+		ELSE 0
+	END AS GDP_influence
+FROM (
 WITH salary_and_comodities_year_change AS (
 	SELECT
 		a.payroll_year,
@@ -52,4 +61,6 @@ ON
 ON
 		tps1.`year` = sacyc2.payroll_year - 1
 	WHERE
-		tps1.country = 'Czech Republic'
+		tps1.country = 'Czech Republic') x
+WHERE
+	GDP_growth > 5
